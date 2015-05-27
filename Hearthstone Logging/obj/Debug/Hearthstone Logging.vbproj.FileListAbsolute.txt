@@ -1,0 +1,11 @@
+c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\bin\Debug\Hearthstone Logging.exe.config
+c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\bin\Debug\Hearthstone Logging.exe
+c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\bin\Debug\Hearthstone Logging.pdb
+c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\bin\Debug\Hearthstone Logging.xml
+c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\obj\Debug\Hearthstone_Logging.frmMainWindow.resources
+c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\obj\Debug\Hearthstone_Logging.Resources.resources
+c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\obj\Debug\Hearthstone Logging.vbproj.GenerateResource.Cache
+c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\obj\Debug\Hearthstone Logging.exe
+c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\obj\Debug\Hearthstone Logging.xml
+c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\obj\Debug\Hearthstone Logging.pdb
+C:\Users\Michael\Documents\Visual Studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\obj\Debug\Hearthstone Logging.vbprojResolveAssemblyReference.cache
