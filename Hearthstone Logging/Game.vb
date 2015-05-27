@@ -42,7 +42,7 @@
 
     Public CardCollection(100) As Card
     Public AttackCollection(100) As Attack
-    Public ActionCollection(100) As Object
+    Public ActionCollection(500) As Object
     Public ActionDictionary As New Dictionary(Of Integer, Object)
     Public ActionCount As Integer = 0
 
@@ -58,6 +58,7 @@
     End Sub
 
     Public Sub GetTurnCards(TurnID As Integer)
+        'This subroutine attempts to gather all the cards in the turn and assign them to the game as well
         Dim CurrentTurn As Turn
         Dim index As Integer = 1
         Dim linedetail As String
@@ -65,7 +66,7 @@
         Dim newCardID As String
         Dim newCard As Card
         Dim templateCard As Card
-        'Dim NewCard As Card = frmMainWindow.CardList("Hero_05")
+
 
         If Not IsNothing(turnDetail(TurnID)) Then
             CurrentTurn = turnDetail(TurnID)

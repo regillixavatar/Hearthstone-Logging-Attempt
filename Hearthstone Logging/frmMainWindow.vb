@@ -29,7 +29,8 @@ Public Class frmMainWindow
 
     Public Event TurnComplete(ID As Integer)
     Private Sub btnGetTurn_click(sender As Object, e As EventArgs) Handles btnGetTurn.Click
-        File.Copy("C:\Program Files (x86)\Hearthstone\Hearthstone_Data\output_log.txt", "C:\Users\Michael\Desktop\output_log.txt", True)
+        Dim DesktopPath As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+        File.Copy("C:\Program Files (x86)\Hearthstone\Hearthstone_Data\output_log.txt", DesktopPath & "\output_log.txt", True)
 
         cbxTurnList.Items.Add(CurrentTurnID)
     End Sub
@@ -48,8 +49,9 @@ Public Class frmMainWindow
     Private Sub btnStartLogging_Click(sender As Object, e As EventArgs) Handles btnStartLogging.Click
         'Grab the user-entered player name
         FriendlyPlayer = txtPlayerName.Text
+        Dim DesktopPath As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+        File.Copy("C:\Program Files (x86)\Hearthstone\Hearthstone_Data\output_log.txt", DesktopPath & "\output_log.txt", True)
 
-        File.Copy("C:\Program Files (x86)\Hearthstone\Hearthstone_Data\output_log.txt", "C:\Users\Michael\Desktop\output_log.txt", True)
         'If they didn't enter anything, display message and stop processing
         If IsNothing(FriendlyPlayer) Or FriendlyPlayer.Length = 0 Then
             MessageBox.Show("Friendly Player Name Missing")
@@ -58,7 +60,9 @@ Public Class frmMainWindow
 
         
         'Read the lines of the output log (may not be able to read while game is running)
-        Dim lines As String() = File.ReadAllLines("C:\Users\Michael\Desktop\output_log.txt")
+
+        Dim lines As String() = File.ReadAllLines(DesktopPath & "\output_log.txt")
+
         'Find the FriendlyPlayerID in the lines
 
 
@@ -121,7 +125,8 @@ Public Class frmMainWindow
 
     Public Sub GetCardList()
         Dim linedetail As String
-        Dim strArray() As String = File.ReadAllLines("C:\Users\Michael\Desktop\cardlist.txt")
+        Dim DesktopPath As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+        Dim strArray() As String = File.ReadAllLines(DesktopPath & "\cardlist.txt")
 
         For i As Integer = 1 To strArray.Length - 1
             linedetail = strArray(i)
@@ -303,8 +308,9 @@ Public Class frmMainWindow
     End Function
 
     Private Sub RunFileCheck(sender As Object, e As ElapsedEventArgs)
-        File.Copy("C:\Program Files (x86)\Hearthstone\Hearthstone_Data\output_log.txt", "C:\Users\Michael\Desktop\output_log.txt", True)
-        CheckFile("C:\Users\Michael\Desktop\output_log.txt", CurrentTurnID, CurrentTurnStart)
+        Dim DesktopPath As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+        File.Copy("C:\Program Files (x86)\Hearthstone\Hearthstone_Data\output_log.txt", DesktopPath & "\output_log.txt", True)
+        CheckFile(DesktopPath & "\output_log.txt", CurrentTurnID, CurrentTurnStart)
 
     End Sub
 
