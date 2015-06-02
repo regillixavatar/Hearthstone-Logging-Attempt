@@ -64,10 +64,6 @@ Public Class frmMainWindow
         Dim lines As String() = File.ReadAllLines(DesktopPath & "\output_log.txt")
 
         'Find the FriendlyPlayerID in the lines
-
-
-
-
         FriendlyPlayerID = GetFriendlyPlayerID(lines, 1)
 
         If FriendlyPlayerID < 0 Then
@@ -110,6 +106,7 @@ Public Class frmMainWindow
                 If linedetail.Contains("name=") And linedetail.Contains("id=") Then
                     index = linedetail.IndexOf("id=")
                     newID = linedetail.Substring(index + 3, linedetail.IndexOf("zone=") - index - 3)
+
                     index = linedetail.IndexOf("cardId=")
                     newCardID = linedetail.Substring(index + 7, linedetail.IndexOf("player=") - index - 8)
                     '
@@ -131,7 +128,6 @@ Public Class frmMainWindow
         For i As Integer = 1 To strArray.Length - 1
             linedetail = strArray(i)
             GetCardListDetail(linedetail)
-
         Next
 
 
@@ -167,7 +163,9 @@ Public Class frmMainWindow
         Dim linedetail As String
         For i As Integer = startline To endline
             linedetail = lines.GetValue(i - 1)
-            If linedetail.Contains("[Power]") Or linedetail.Contains("SubType=ATTACK") Then
+            If linedetail.Contains("[Power]") Or linedetail.Contains("SubType=ATTACK") _
+                Or (linedetail.Contains("Network+Entity+Tag") And linedetail.Contains("entity=") And linedetail.Contains("zone=PLAY")) _
+                Or (linedetail.Contains("DebugPrintPower") And linedetail.Contains("SHOW_ENTITY")) Then
                 strArray(values) = linedetail
                 values = values + 1
             End If
@@ -189,7 +187,9 @@ Public Class frmMainWindow
             'Get the start of the game
             If BlockContains(lines, CurrentGameStart, lastrow, "ConnectAPI.GotoGameServer") > 0 Then
                 CurrentGameStart = BlockContains(lines, CurrentGameStart, lastrow, "ConnectAPI.GotoGameServer")
-            Else : Exit Sub
+            Else
+                FileTimer.Enabled = True
+                Exit Sub
             End If
 
             CurrentGameID = CurrentGameIndex 'GetGameID(lines, CurrentGameStart)
@@ -259,9 +259,14 @@ Public Class frmMainWindow
                 CurrentGame.GetGameDetails(TurnID)
                 'Get new cards this turn
                 If TurnID > 0 Then
-                    CurrentGame.GetTurnCards(TurnID)
-                    CurrentGame.GetTurnTagChanges(TurnID)
-                    CurrentGame.GetTurnActions(TurnID)
+                    Try
+                        CurrentGame.GetTurnCards(TurnID)
+                        CurrentGame.GetTurnTagChanges(TurnID)
+                        CurrentGame.GetTurnActions(TurnID)
+                    Catch ex As Exception
+                        MessageBox.Show("Encountered " & ex.ToString)
+                    End Try
+
                 End If
                 'Increment TurnId
                 CurrentTurnID = TurnID + 1
@@ -308,9 +313,16 @@ Public Class frmMainWindow
     End Function
 
     Private Sub RunFileCheck(sender As Object, e As ElapsedEventArgs)
+
+        Try
         Dim DesktopPath As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
         File.Copy("C:\Program Files (x86)\Hearthstone\Hearthstone_Data\output_log.txt", DesktopPath & "\output_log.txt", True)
         CheckFile(DesktopPath & "\output_log.txt", CurrentTurnID, CurrentTurnStart)
+
+        Catch ex As Exception
+            MessageBox.Show("Encountered " & ex.ToString)
+        End Try
+
 
     End Sub
 
@@ -480,6 +492,7 @@ Public Class frmMainWindow
             getGameDetails(gameDetail)
             GetCardsPlayed()
             GetAttacks()
+            GetActions()
         Else
             Dim TurnIndex As Integer = cbxTurnList.Text
             Dim Details As Turn = GameCollection(GameIndex).turnDetail(TurnIndex)
@@ -489,6 +502,7 @@ Public Class frmMainWindow
             End If
             GetCardsPlayed()
             GetAttacks()
+            GetActions()
         End If
 
     End Sub
@@ -611,6 +625,40 @@ Public Class frmMainWindow
             For i = 0 To GameDetail.GetAttackCount
                 If GameDetail.AttackCollection(i).Turn = SelectedTurn Then
                     lstAttacks.Items.Add(GameDetail.AttackCollection(i).AttackerName & " attacks " & GameDetail.AttackCollection(i).DefenderName)
+                End If
+            Next
+        End If
+    End Sub
+
+    Public Sub GetActions()
+        Dim GameDetail As Game = GameCollection(cbxGameList.SelectedIndex - 1)
+        Dim SelectedTurn As Integer
+        Dim Cards() As Card = GameDetail.CardCollection
+        lstGameActions.Items.Clear()
+        If IsNothing(GameDetail.ActionCollection(0)) Then
+            Exit Sub
+        End If
+
+        If cbxTurnList.Text = "All" Then
+            For i = 0 To GameDetail.GetActionCount
+                If IsNothing(GameDetail.ActionCollection(i).TextDescription) Then
+                    lstGameActions.Items.Add("Unknown Card (Secret?) Card " & GameDetail.ActionCollection(i).ActionCard & " played")
+                Else
+                    lstGameActions.Items.Add(GameDetail.ActionCollection(i).TextDescription)
+                End If
+
+
+
+            Next
+        Else
+            SelectedTurn = cbxTurnList.Text
+            For i = 0 To GameDetail.GetActionCount
+                If GameDetail.ActionCollection(i).Turn = SelectedTurn Then
+                    If IsNothing(GameDetail.ActionCollection(i).TextDescription) Then
+                        lstGameActions.Items.Add("Unknown Card (Secret?) Card " & GameDetail.ActionCollection(i).ActionCard & " played")
+                    Else
+                        lstGameActions.Items.Add(GameDetail.ActionCollection(i).TextDescription)
+                    End If
                 End If
             Next
         End If

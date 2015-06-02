@@ -15,11 +15,18 @@
     Public Rarity As String
 
     Public TurnPlayed As Integer
+    Public TurnDestroyed As Integer
     Public NumAttacks As Integer
     Public CardTarget As Integer
     Public PlayerID As Integer
     Public FriendlyCard As Boolean
     Public Attacks(20) As Attack
+
+    Public MaxHP As Integer
+    Public CurrentHP As Integer
+    Public CurrentAttack As Integer
+
+    Public ActionList(50) As GameAction
 
     Public Function Clone(newID As Integer)
         Dim NewCard As Card = New Card With {.inGameID = newID, .ID = ID, .Name = Name, .type = type, .cost = cost _

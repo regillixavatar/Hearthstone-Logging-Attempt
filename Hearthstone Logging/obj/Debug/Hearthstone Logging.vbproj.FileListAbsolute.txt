@@ -9,3 +9,14 @@ c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Heart
 c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\obj\Debug\Hearthstone Logging.xml
 c:\users\michael\documents\visual studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\obj\Debug\Hearthstone Logging.pdb
 C:\Users\Michael\Documents\Visual Studio 2013\Projects\Hearthstone Logging\Hearthstone Logging\obj\Debug\Hearthstone Logging.vbprojResolveAssemblyReference.cache
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\bin\Debug\Hearthstone Logging.exe.config
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\obj\Debug\Hearthstone Logging.exe
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\obj\Debug\Hearthstone Logging.xml
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\obj\Debug\Hearthstone Logging.pdb
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\bin\Debug\Hearthstone Logging.exe
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\bin\Debug\Hearthstone Logging.pdb
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\bin\Debug\Hearthstone Logging.xml
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\obj\Debug\Hearthstone Logging.vbprojResolveAssemblyReference.cache
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\obj\Debug\Hearthstone_Logging.frmMainWindow.resources
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\obj\Debug\Hearthstone_Logging.Resources.resources
+C:\Users\Michael\Documents\GitHub\Hearthstone-Logging-Attempt\Hearthstone Logging\obj\Debug\Hearthstone Logging.vbproj.GenerateResource.Cache

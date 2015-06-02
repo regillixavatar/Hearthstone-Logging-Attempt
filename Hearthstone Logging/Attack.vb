@@ -1,5 +1,5 @@
 ﻿Public Class Attack
-    Inherits GameAction
+
     Public AttackerID As Integer
     Public AttackerCardID As String
     Public AttackerName As String
